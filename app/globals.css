@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+body { @apply bg-paper text-ink antialiased; }
+input, select, textarea {
+  @apply w-full rounded-lg border border-stone-300 bg-white px-3 py-2 text-sm outline-none focus:border-gold;
+}
+label { @apply mb-1 block text-xs font-medium uppercase tracking-wide text-stone-500; }
+.btn {
+  @apply inline-flex items-center justify-center rounded-lg bg-ink px-4 py-2 text-sm font-medium text-white hover:bg-stone-800 disabled:opacity-50;
+}
+.btn-ghost {
+  @apply inline-flex items-center justify-center rounded-lg border border-stone-300 px-4 py-2 text-sm hover:bg-white;
+}
