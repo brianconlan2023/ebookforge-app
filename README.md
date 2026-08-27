@@ -1,28 +1,28 @@
 # EbookForge
 
-Standalone AI ebook creator. Separate from the earlier Turborepo/Express scaffold.
+Standalone AI ebook creator + book studio.
+https://github.com/brianconlan2023/ebookforge-app
 
-## Stack
-- Next.js 14 App Router + Tailwind
-- OpenAI 6-step pipeline (research → titles → outline → chapters → edit → front/back matter)
-- JWT cookie auth
-- DOCX via `docx`; PDF via print-ready HTML
+## Studio
+Route: `/studio/[id]`
+- Front + back cover designer (drag title, subtitle, author)
+- Rewrite cover copy and back-cover blurb
+- Borders: none / thin / gold / ornate / double frame
+- 104 themes (Kindle Modern, Classic, Cosmos, Amour + 20 genres × 5 treatments)
+- Interior preview: phone, tablet, Paperwhite
+- Drop cap + justified body
+- PDF print + Word export
 
-## Run locally
+## Kindle Create vs this studio
+Kindle Create: 4 locked themes, no cover tool, desktop only, cannot edit tables/lists/footnotes.
+EbookForge: 100+ themes, covers in-browser, live type placement, device preview.
+
+## Run
 ```bash
 git clone https://github.com/brianconlan2023/ebookforge-app
 cd ebookforge-app
 npm install
 cp .env.example .env.local
-# set OPENAI_API_KEY and AUTH_SECRET
+# OPENAI_API_KEY and AUTH_SECRET
 npm run dev
 ```
-
-## Env
-- `OPENAI_API_KEY` — required for generation
-- `AUTH_SECRET` — JWT signing key
-
-## Notes
-- Projects persist in the browser (`localStorage`) so the first deploy works without Postgres.
-- Auth users live in memory on the server instance (swap Prisma/Postgres when you add Neon).
-- Word counts in the pipeline are capped so a single Vercel function can finish. Raise them after you add a queue.
