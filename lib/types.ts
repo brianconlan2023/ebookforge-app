@@ -28,6 +28,9 @@ export type Design = {
   showBorder: boolean;
   dropCap: boolean;
   justify: boolean;
+  chapterOrnament: boolean;
+  runningHeads: boolean;
+  trim: "5x8" | "6x9" | "8.5x11";
   cover: CoverText;
 };
 
@@ -56,6 +59,9 @@ export function defaultDesign(title = "", subtitle = ""): Design {
     showBorder: true,
     dropCap: true,
     justify: true,
+    chapterOrnament: true,
+    runningHeads: true,
+    trim: "6x9",
     cover: {
       title: title || "Untitled",
       subtitle: subtitle || "",
@@ -70,3 +76,9 @@ export function defaultDesign(title = "", subtitle = ""): Design {
     },
   };
 }
+
+export const TRIM_IN = {
+  "5x8": { w: 5, h: 8 },
+  "6x9": { w: 6, h: 9 },
+  "8.5x11": { w: 8.5, h: 11 },
+} as const;
