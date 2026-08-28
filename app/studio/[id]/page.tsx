@@ -1,11 +1,10 @@
 "use client";
 
 import BookStudio from "@/components/BookStudio";
-import { defaultDesign } from "@/lib/types";
+import { defaultDesign, type Ebook } from "@/lib/types";
 import { getBook } from "@/lib/store";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import type { Ebook } from "@/lib/types";
 
 export default function StudioPage() {
   const { id } = useParams<{ id: string }>();
@@ -14,7 +13,7 @@ export default function StudioPage() {
   useEffect(() => {
     const found = getBook(id);
     if (found) {
-      if (!found.design) found.design = defaultDesign(found.title, found.subtitle);
+      found.design = { ...defaultDesign(found.title, found.subtitle), ...found.design };
       setBook(found);
     }
   }, [id]);
@@ -23,7 +22,7 @@ export default function StudioPage() {
     return (
       <main className="p-10">
         <p>Book not found in this browser.</p>
-        <p className="mt-2 text-sm text-stone-500">Open Dashboard and create or generate a book first.</p>
+        <p className="mt-2 text-sm text-stone-500">Import a .ebookforge.json from Dashboard, or create a book first.</p>
       </main>
     );
   }
